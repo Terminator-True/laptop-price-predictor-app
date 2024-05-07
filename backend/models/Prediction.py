@@ -31,7 +31,36 @@ class Prediction:
             'Amd low Gamma',
             'Amd High gamma'
         ]
-        
+        self.marcas = [
+            "Lenovo",
+            "Asus",
+            "HP",
+            "MSI",
+            "Acer",
+            "Apple",
+            "Alurin",
+            "Dell",
+            "Microsoft",
+            "PcCom",
+            "Gigabyte",
+            "Medion",
+            "Razer",
+            "LG",
+            "Samsung",
+            "Vant",
+            "Vanwin",
+            "Denver",
+            "Primux",
+            "Deep Gaming",
+            "Dynabook Toshiba",
+            "Prixton",
+            "Innjoo",
+            "Realme",
+            "Huawei",
+            "Thomson",
+            "Jetwing",
+            "Toshiba"
+        ]
     def get_cpu(self,cpu_num):
         return self.cpus[cpu_num]
     
