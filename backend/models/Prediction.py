@@ -89,7 +89,6 @@ class Prediction:
         return self.marcas[self.marca]
     
     def do_prediction(self):
-        #TODO Call to prediction model
         pipe = pickle.load(open('backend\ML_model\pipe_main.pkl','rb'))
         query = np.array([
             self.get_marca(),
@@ -102,6 +101,6 @@ class Prediction:
         query = query.reshape(1,7)
         return int(np.exp(pipe.predict(query)[0]))
     
-if __name__ == '__main__':
-    prediction = Prediction(0,15.6,0,32,0,0,2000)
-    print(prediction.do_prediction())
+# if __name__ == '__main__':
+#     prediction = Prediction(0,15.6,0,32,0,0,2000)
+#     print(prediction.do_prediction())
