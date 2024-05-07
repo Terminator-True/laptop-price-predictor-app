@@ -1,11 +1,11 @@
 from flask import Flask,request
 from models.Prediction import Prediction
-# from flask_cors import CORS
+from flask_cors import CORS
 
 app = Flask(__name__)
 
 # enable CORS
-# CORS(app, resources={r'/*': {'origins': '*'}})
+CORS(app, resources={r'/*': {'origins': '*'}})
 
 @app.route("/prediction",methods=['POST'])
 def predict():
