@@ -7,5 +7,9 @@ export default {
 }
 </script>
 <template>
-    <AppLayout />
+    <AppLayout>
+        <router-view>
+            
+        </router-view>
+    </AppLayout>
 </template>

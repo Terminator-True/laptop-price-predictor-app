@@ -9,12 +9,12 @@ export default {
 </script>
 
 <template>
-        <div class="z-10 flex flex-col min-h-screen">
-            <Header />
+    <div class="z-10 flex flex-col min-h-screen">
+        <!-- <Header /> -->
+            <div class="z-10 main"></div>
             <slot>
-                <div class="main"></div>
             </slot>
-            <Footer class="mt-auto" />
-        </div>
+        <Footer class="mt-auto" />
+    </div>
 
 </template>
