@@ -21,10 +21,12 @@ export default {
         :animate="{ opacity: 1, scale: 1 }"
         :transition="{ duration: 0.5 }"
     >
+    <button class="w-full px-2 py-2 text-sm duration-300 bg-white border border-white rounded outline-none cursor-pointer text-primary-black/50 placeholder:text-primary-black/50">
+        <slot></slot>
+    </button>
         <input
-            type="number"
+            type="button"
             :id="id"
-            class="w-full px-2 py-2 text-sm duration-300 border border-transparent rounded outline-none text-primary-black/50 placeholder:text-primary-black/50"
             :placeholder="placeholder"
             :value="modelValue"
             @input="$emit('update:modelValue', $event.target.value)"

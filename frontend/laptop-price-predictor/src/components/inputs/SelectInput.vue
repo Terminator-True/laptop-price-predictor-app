@@ -27,7 +27,7 @@ export default {
             :name="name" 
             :id="id" 
             :placeholder="placeholder" 
-            class="w-full px-4 py-2 text-sm transition-colors duration-300 bg-white border rounded text-primary-black/50 active:text-primary-black"
+            class="w-full px-2 py-2 text-sm transition-colors duration-300 bg-white border rounded text-primary-black/50 active:text-primary-black"
             :value="modelValue"
             @change="$emit('update:modelValue', $event.target.value)"
             >

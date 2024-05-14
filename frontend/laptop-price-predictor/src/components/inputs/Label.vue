@@ -8,5 +8,5 @@ export default {
 </script>
 
 <template>
-    <label class="block mb-2 text-sm w-fit" :for="id">{{ text }}</label>
+    <label class="block text-sm w-fit" :for="id">{{ text }}</label>
 </template>

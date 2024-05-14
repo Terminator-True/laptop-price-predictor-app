@@ -29,8 +29,8 @@ def predict():
    
    except KeyError:
       return {"status":500,"value":'Missing parameter'}
-   except:
-      return {"status":500,"value":'Error'}
+   except Exception as e:
+      return {"status":500,"value":e}
       
 if __name__ == '__main__':
-    app.run()
+   app.run()
