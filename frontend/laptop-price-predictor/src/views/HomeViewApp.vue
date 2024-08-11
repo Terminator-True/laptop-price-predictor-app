@@ -13,6 +13,8 @@ export default {
 	data(){
 		return {
 			cargando:false,
+			result:false,
+			predicted_price:0,
 			form_data:{
 				options:[{
 					id:0,
@@ -266,10 +268,11 @@ export default {
 			}
 			
 			await instance.request('/prediction',config).then((res)=>{
-				console.log(res);
+				this.predicted_price = res.data.value
 			})
 			setTimeout(() => {
 				this.cargando = false;
+				this.result = true;
 			}, 1500);
 		}
 	}
@@ -288,16 +291,24 @@ export default {
 		
 		<template v-if="cargando">
 			
-			<div class="content-center col-span-6 rounded-md type-js headline text-slate-50/20 w-fit">
-				<div class="w-12 h-12 border-4 border-t-4 border-blue-500 rounded-md animate-spin"></div>
+			<div class="flex items-center justify-center m-4">
+				<div class="flex flex-row gap-2">
+					<div class="w-4 h-4 bg-blue-700 rounded-full animate-bounce"></div>
+					<div class="w-4 h-4 rounded-full bg-blue-700 animate-bounce [animation-delay:-.3s]"></div>
+					<div class="w-4 h-4 rounded-full bg-blue-700 animate-bounce [animation-delay:-.5s]"></div>
+				</div>
 			</div>
 		
 				
 		</template>
 		
 		<template v-else-if="!cargando && result">
-		
-				
+			<div class="flex items-center justify-center m-4">
+				<div class="flex flex-row gap-2">
+					<p> El precio del portátil configurado sería: {{ predicted_price }}€</p>
+
+				</div>
+			</div>
 			
 		</template>
 		
