@@ -21,7 +21,7 @@ export default {
         :animate="{ opacity: 1, scale: 1 }"
         :transition="{ duration: 0.5 }"
     >
-    <button class="w-full px-2 py-2 text-sm duration-300 bg-white border border-white rounded outline-none cursor-pointer text-primary-black/50 placeholder:text-primary-black/50">
+    <button class="px-2 py-2 m-4 text-sm text-white duration-300 border border-white rounded outline-none cursor-pointer color-white w-fit bg-slate-700 placeholder:text-primary-black/50">
         <slot></slot>
     </button>
         <input

@@ -299,7 +299,7 @@ export default {
 </script>
 
 <template>
-	<div class="flex justify-center align-middle min-h-[70vh] mt-5">
+	<div class="flex justify-center align-middle min-h-[40vh] mt-5">
 
 
 		<div class="content-center col-span-6 bg-white rounded-xl">
@@ -340,7 +340,12 @@ export default {
 
 					<p> El precio del portátil configurado sería: {{ predicted_price }} €</p>
 				</div>
+				
 			</div>
+
+			<PrimaryButton class="mx-auto" @click="this.result = false; this.paso = 0">
+						Volver
+			</PrimaryButton>
 			
 		</template>
 		
@@ -417,7 +422,7 @@ export default {
 				<div class="p-10 mx-auto rounded-md w-fit">
 
 					<h2 class="text-slate-600 "> Introduce las características del portátil que buscas</h2>
-						<!-- <SelectInput id="text" placeholder="Texto de prueba" v-model="form.text" class="m-4 text-black" :options="form_data.options"/> -->
+
 						<div class="flex flex-col mt-2">
 							
 							<Label id="text" text="SO" class="m-4 text-xl text-slate-600"/>
@@ -426,13 +431,7 @@ export default {
 						
 						</div>
 						
-						<!-- <div class="flex flex-col mt-2">
-							
-							<Label id="text" text="Pulgadas" class="m-4 text-xl text-slate-600"/>
-							
-							<TextInput id="text" placeholder="Inches" v-model="form.inches" class="m-4"/>
-						
-						</div> -->
+
 						
 						
 					</div>
