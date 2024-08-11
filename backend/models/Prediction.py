@@ -89,17 +89,18 @@ class Prediction:
         return self.marcas[self.marca]
     
     def do_prediction(self):
-        pipe = pickle.load(open('backend\ML_model\pipe_main.pkl','rb'))
-        query = np.array([
-            self.get_marca(),
-            self.inches,
-            self.get_cpu(),
-            self.ram,
-            self.get_gpu(),
-            self.get_so(),
-            self.ssd], dtype=object)
-        query = query.reshape(1,7)
-        return int(np.exp(pipe.predict(query)[0]))
+        with open('./ML_model/pipe_main.pkl','rb') as mlModel:
+            pipe = pickle.load(mlModel)
+            query = np.array([
+                self.get_marca(),
+                self.inches,
+                self.get_cpu(),
+                self.ram,
+                self.get_gpu(),
+                self.get_so(),
+                self.ssd], dtype=object)
+            query = query.reshape(1,7)
+            return int(np.exp(pipe.predict(query)[0]))
     
 # if __name__ == '__main__':
 #     prediction = Prediction(0,15.6,0,32,0,0,2000)

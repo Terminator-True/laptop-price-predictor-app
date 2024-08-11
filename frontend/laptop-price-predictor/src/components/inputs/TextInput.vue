@@ -24,7 +24,7 @@ export default {
         <input
             type="number"
             :id="id"
-            class="w-full px-2 py-2 text-sm duration-300 border border-transparent rounded outline-none text-primary-black/50 placeholder:text-primary-black/50"
+            class="w-full px-2 py-2 text-sm duration-300 border rounded outline-none text-primary-black/50 placeholder:text-primary-black/50"
             :placeholder="placeholder"
             :value="modelValue"
             @input="$emit('update:modelValue', $event.target.value)"

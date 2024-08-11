@@ -11,7 +11,7 @@ export default {
 <template>
     <div class="z-10 flex flex-col min-h-screen">
         <!-- <Header /> -->
-            <div class="z-10 main"></div>
+            <!-- <div class="z-10"></div> -->
             <slot>
             </slot>
         <Footer class="mt-auto" />

@@ -51,7 +51,7 @@ animation: zoom 16s alternate infinite;
   right: -5px;
   width: 2px;
   /* Change colour of Cursor Here */
-  background-color: white;
+  background-color: black;
   z-index: 1;
   animation: flash 0.5s none infinite alternate;
 }
