@@ -15,6 +15,7 @@ export default {
 			cargando:false,
 			result:false,
 			predicted_price:0,
+			formulario:{},
 			form_data:{
 				options:[{
 					id:0,
@@ -260,6 +261,22 @@ export default {
 		});
 	},
 	methods:{
+		getLabelsFromOptions(data) {
+			const getLabelById = (options, id) => {
+				const option = options.find(o => o.id === id);
+				return option ? option.label : null;
+			};
+
+			return {
+				cpu: getLabelById(this.optionsCPUs, parseInt(data.cpu)),
+				marca: getLabelById(this.optionsMarcas, parseInt(data.marca)),
+				gpu: getLabelById(this.optionsGPUs, parseInt(data.gpu)),
+				so: getLabelById(this.optionsSO, parseInt(data.so)),
+				ram: data.ram,
+				inches: data.inches,
+				ssd: data.ssd
+			};
+		},
 		async submit(){
 			this.cargando = true;
 			let config = {
@@ -270,6 +287,8 @@ export default {
 			await instance.request('/prediction',config).then((res)=>{
 				this.predicted_price = res.data.value
 			})
+			this.formulario = this.getLabelsFromOptions(this.form);
+			console.log(this.formulario);
 			setTimeout(() => {
 				this.cargando = false;
 				this.result = true;
@@ -304,9 +323,22 @@ export default {
 		
 		<template v-else-if="!cargando && result">
 			<div class="flex items-center justify-center m-4">
-				<div class="flex flex-row gap-2">
-					<p> El precio del portátil configurado sería: {{ predicted_price }}€</p>
+				<div class="flex flex-col gap-2">
+					<table class="m-4 table-auto">
+					<thead class="border-b dark:border-white/10 ">
+						<tr>
+						<th colspan="2">Características escogidas</th>
+						</tr>
+					</thead>
+					<tbody class="border-b dark:border-white/10 ">
+						<tr v-for="(value, key) in formulario" :key="key">
+							<td>{{ key }}</td>
+							<td>{{ value }}</td>
+						</tr>
+					</tbody>
+					</table>
 
+					<p> El precio del portátil configurado sería: {{ predicted_price }} €</p>
 				</div>
 			</div>
 			

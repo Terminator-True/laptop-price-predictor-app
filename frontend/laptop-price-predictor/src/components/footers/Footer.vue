@@ -8,7 +8,7 @@ export default {
 <footer class="w-full px-3 py-4 mt-16 text-white bg-transparent">
     <div class="container flex flex-wrap items-center justify-between mx-auto">
         <div class="w-full mb-8 md:w-1/2 md:text-center md:mb-0">
-            <p class="text-xs text-gray-200 md:text-sm">Powered by Python and Vue</p>
+            <p class="text-xs text-gray-200 md:text-sm">Powered by Flask and Vue</p>
         </div>
         <div class="w-full mb-8 md:w-1/2 md:text-center md:mb-0">
             <ul class="flex flex-wrap justify-center gap-3 text-xs list-reset md:text-sm">
