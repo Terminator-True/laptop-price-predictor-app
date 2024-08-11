@@ -4,6 +4,7 @@ import Label from '@/components/inputs/Label.vue';
 import SelectInput from '@/components/inputs/SelectInput.vue';
 import AppLayout from '@/components/Layouts/AppLayout.vue'
 import PrimaryButton from '@/components/buttons/PrimaryButton.vue';
+import instance from '@/mod/axiosInstance';
 
 export default {
     components:{
@@ -11,6 +12,7 @@ export default {
 	},
 	data(){
 		return {
+			cargando:false,
 			form_data:{
 				options:[{
 					id:0,
@@ -204,7 +206,21 @@ export default {
       "id": 8,
       "label": "Mac Processor"
     }
-  			]
+  			],
+			optionsSO:[
+			{
+			"id": 0,
+			"label": "No Os/ Linux"
+			},
+			{
+			"id": 1,
+			"label": "Windows"
+			},
+			{
+			"id": 2,
+			"label": "Apple"
+			}
+		]
 
 		}
 	},
@@ -240,123 +256,160 @@ export default {
 		$(document).ready(function(){
 			autoType(".type-js",200);
 		});
+	},
+	methods:{
+		async submit(){
+			this.cargando = true;
+			let config = {
+				method:"POST",
+				data:this.form
+			}
+			
+			await instance.request('/prediction',config).then((res)=>{
+				console.log(res);
+			})
+			setTimeout(() => {
+				this.cargando = false;
+			}, 1500);
+		}
 	}
 }
 </script>
 
 <template>
-	<div class="flex justify-center align-middle min-h-[90vh] mt-5">
+	<div class="flex justify-center align-middle min-h-[70vh] mt-5">
 
 
-		<div class="content-center col-span-7 bg-white">
+		<div class="content-center col-span-6 bg-white rounded-xl">
+			
+			<div class="rounded-md type-js headline text-slate-50/20 w-fit">
+				<h1 class=" text-slate-600 text-js"> Laptop price predictor 💻</h1>
+			</div>
 		
-		<div class="align-middle rounded-md type-js headline text-slate-50/20 w-fit">
-			<h1 class=" text-slate-600 text-js">Laptop price predictor</h1>
-		</div>
-
-		<template v-if="paso == 0">
-			<div class="p-10 rounded-md w-fit md:w-full">
-
-				<div class="w-full">
-					<h2 class="text-slate-600 "> Introduce las características del portátil que buscas</h2>
-				</div>
-
-				<div class="bg-white/20">
-
-						<!-- <SelectInput id="text" placeholder="Texto de prueba" v-model="form.text" class="m-4 text-black" :options="form_data.options"/> -->
-						<div class="flex flex-col mt-2">
-							
-							<Label id="text" text="Ram GigaBytes" class="m-4 text-xl text-slate-600"/>
-							
-							<TextInput id="text" placeholder="GB de ram del portátil" v-model="form.inches" class="m-4"/>
-						
-						</div>
-						
-						<div class="flex flex-col mt-2">
-							
-							<Label id="text" text="Pulgadas" class="m-4 text-xl text-slate-600"/>
-							
-							<TextInput id="text" placeholder="Pulgadas de la pantalla" v-model="form.ram" class="m-4"/>
-						
-						</div>
-						
-						<div class="flex flex-col mt-2">
-							
-							<Label id="text" text="Disco duro" class="m-4 text-xl text-slate-600"/>
-							
-							<TextInput id="text" placeholder="Almacenamiento del GB del SSD" v-model="form.ssd" class="m-4"/>
-						
-						</div>
-					</div>
-				</div>
+		<template v-if="cargando">
+			
+			<div class="content-center col-span-6 rounded-md type-js headline text-slate-50/20 w-fit">
+				<div class="w-12 h-12 border-4 border-t-4 border-blue-500 rounded-md animate-spin"></div>
+			</div>
+		
+				
+		</template>
+		
+		<template v-else-if="!cargando && result">
+		
 				
 			
 		</template>
-		<template v-if="paso == 1">
-			<div class="p-10 mx-auto rounded-md w-fit">
+		
+		<template v-else-if="!cargando && !result">
+			<template v-if="paso == 0">
+				<div class="p-10 rounded-md w-fit md:w-full">
 
-				<h2 class="text-slate-600 "> Introduce las características del portátil que buscas</h2>
-				<!-- <SelectInput id="text" placeholder="Texto de prueba" v-model="form.text" class="m-4 text-black" :options="form_data.options"/> -->
-					<div class="flex flex-col mt-2">
-						
-						<Label id="text" text="Marca" class="m-4 text-xl text-grey"/>
-						
-						<SelectInput id="text" placeholder="Marca del portatil" v-model="form.marca" class="m-4" :options="optionsMarcas"/>
-					
+					<div class="w-full">
+						<h2 class="text-slate-600 "> Introduce las características del portátil que buscas</h2>
 					</div>
-					
-					<div class="flex flex-col mt-2">
-						
-						<Label id="text" text="Procesador" class="m-4 text-xl text-slate-600"/>
-						
-						<SelectInput id="text" placeholder="CPU" v-model="form.cpu" class="m-4" :options="optionsCPUs"/>
-					
-					</div>
-					
-					<div class="flex flex-col mt-2">
-						
-						<Label id="text" text="Targeta gráfica" class="m-4 text-xl text-slate-600"/>
-						
-						<SelectInput id="text" placeholder="GPU" v-model="form.gpu" class="m-4" :options="optionsGPUs"/>
-					
-					</div>
-				</div>
-		</template>
-		<template v-if="paso == 2">
-			<div class="p-10 mx-auto rounded-md w-fit">
 
-				<h2 class="text-slate-600 "> Introduce las características del portátil que buscas</h2>
+					<div class="bg-white/20">
+
+							<!-- <SelectInput id="text" placeholder="Texto de prueba" v-model="form.text" class="m-4 text-black" :options="form_data.options"/> -->
+							<div class="flex flex-col mt-2">
+								
+								<Label id="text" text="Ram GigaBytes" class="m-4 text-xl text-slate-600"/>
+								
+								<TextInput id="text" placeholder="GB de ram del portátil" v-model="form.ram" class="m-4"/>
+							
+							</div>
+							
+							<div class="flex flex-col mt-2">
+								
+								<Label id="text" text="Pulgadas" class="m-4 text-xl text-slate-600"/>
+								
+								<TextInput id="text" placeholder="Pulgadas de la pantalla" v-model="form.inches" class="m-4"/>
+							
+							</div>
+							
+							<div class="flex flex-col mt-2">
+								
+								<Label id="text" text="Disco duro" class="m-4 text-xl text-slate-600"/>
+								
+								<TextInput id="text" placeholder="Almacenamiento del GB del SSD" v-model="form.ssd" class="m-4"/>
+							
+							</div>
+						</div>
+					</div>
+					
+				
+			</template>
+			<template v-if="paso == 1">
+				<div class="p-10 mx-auto rounded-md w-fit">
+
+					<h2 class="text-slate-600 "> Introduce las características del portátil que buscas</h2>
 					<!-- <SelectInput id="text" placeholder="Texto de prueba" v-model="form.text" class="m-4 text-black" :options="form_data.options"/> -->
-					<div class="flex flex-col mt-2">
+						<div class="flex flex-col mt-2">
+							
+							<Label id="text" text="Marca" class="m-4 text-xl text-grey"/>
+							
+							<SelectInput id="text" placeholder="Marca del portatil" v-model="form.marca" class="m-4" :options="optionsMarcas"/>
 						
-						<Label id="text" text="SO" class="m-4 text-xl text-slate-600"/>
+						</div>
 						
-						<SelectInput id="text" placeholder="Sistema Operativo" v-model="form.marca" class="m-4" :options="optionsMarcas"/>
-					
+						<div class="flex flex-col mt-2">
+							
+							<Label id="text" text="Procesador" class="m-4 text-xl text-slate-600"/>
+							
+							<SelectInput id="text" placeholder="CPU" v-model="form.cpu" class="m-4" :options="optionsCPUs"/>
+						
+						</div>
+						
+						<div class="flex flex-col mt-2">
+							
+							<Label id="text" text="Targeta gráfica" class="m-4 text-xl text-slate-600"/>
+							
+							<SelectInput id="text" placeholder="GPU" v-model="form.gpu" class="m-4" :options="optionsGPUs"/>
+						
+						</div>
 					</div>
-					
-					<div class="flex flex-col mt-2">
+			</template>
+			<template v-if="paso == 2">
+				<div class="p-10 mx-auto rounded-md w-fit">
+
+					<h2 class="text-slate-600 "> Introduce las características del portátil que buscas</h2>
+						<!-- <SelectInput id="text" placeholder="Texto de prueba" v-model="form.text" class="m-4 text-black" :options="form_data.options"/> -->
+						<div class="flex flex-col mt-2">
+							
+							<Label id="text" text="SO" class="m-4 text-xl text-slate-600"/>
+							
+							<SelectInput id="text" placeholder="Sistema Operativo" v-model="form.so" class="m-4" :options="optionsSO"/>
 						
-						<Label id="text" text="Pulgadas" class="m-4 text-xl text-slate-600"/>
+						</div>
 						
-						<TextInput id="text" placeholder="Inches" v-model="form.cpu" class="m-4" :options="optionsCPUs"/>
-					
+						<!-- <div class="flex flex-col mt-2">
+							
+							<Label id="text" text="Pulgadas" class="m-4 text-xl text-slate-600"/>
+							
+							<TextInput id="text" placeholder="Inches" v-model="form.inches" class="m-4"/>
+						
+						</div> -->
+						
+						
 					</div>
+			</template>
+			<div class="flex w-full">
+					<PrimaryButton class="mx-auto" @click="paso>0 ? paso--:paso">
+						Atrás
+					</PrimaryButton>
+					
+					<PrimaryButton v-show="paso<=1" class="mx-auto"  @click="paso<=2 ? paso++:paso">
+						Siguente
+					</PrimaryButton>
+
+					<PrimaryButton v-show="paso>=2" class="mx-auto"  @click="submit">
+						Enviar datos
+					</PrimaryButton>
 					
 					
 				</div>
 		</template>
-		<div class="flex w-full">
-				<PrimaryButton class="mx-auto" @click="paso>0 ? paso--:paso">
-					Atrás
-				</PrimaryButton>
-				
-				<PrimaryButton class="mx-auto"  @click="paso<2 ? paso++:paso">
-					Siguente
-				</PrimaryButton>
-				
-				
-			</div>
 	</div>
 </div>
 	

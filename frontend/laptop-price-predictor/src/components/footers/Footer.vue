@@ -12,7 +12,7 @@ export default {
         </div>
         <div class="w-full mb-8 md:w-1/2 md:text-center md:mb-0">
             <ul class="flex flex-wrap justify-center gap-3 text-xs list-reset md:text-sm">
-                <li><a href="#me" class="text-gray-400 hover:text-white">Sobre mi</a></li>
+                <li><a href="https://www.joelfarell.me/" class="text-gray-400 hover:text-white">Sobre mi</a></li>
                 <li class="mx-4"><a href="https://www.linkedin.com/in/joel-farell-cabrera/" class="text-gray-400 hover:text-white">Linkedin</a></li>
                 <li><a href="https://github.com/Terminator-True" class="text-gray-400 hover:text-white">GitHub</a></li>
             </ul>

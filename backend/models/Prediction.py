@@ -36,7 +36,6 @@ class Prediction:
             'Nvidia low gamma',
             'Other nvidia grafic card',
             'integrated graphics',
-            'Other nvidia grafic card',
             'Apple integrated graphics',
             'Amd low Gamma',
             'Amd High gamma'

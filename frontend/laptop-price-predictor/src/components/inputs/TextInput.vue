@@ -8,7 +8,7 @@ export default {
     props:{
         placeholder:String,
         id:String,
-        modelValue:String
+        modelValue:Number
     },
     emits: ['update:modelValue']
 }

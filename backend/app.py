@@ -15,19 +15,18 @@ def predict():
       # content_type = request.headers.get('Content-Type')
       # if content_type == 'application/json':
       data = json.loads(request.data)
-      print(data)
       prediction = Prediction(
-         data['marca'],
-         data['inches'],
-         data['cpu'],
-         data['ram'],
-         data['gpu'],
-         data['so'],
-         data['ssd']
+         int(data['marca']),
+         int(data['inches']),
+         int(data['cpu']),
+         int(data['ram']),
+         int(data['gpu']),
+         int(data['so']),
+         int(data['ssd'])
       )
       return jsonify({"status":200,"value": str(prediction.do_prediction())})
       
-      return jsonify({"status":500,"value":'content type Error'})
+      # return jsonify({"status":500,"value":'content type Error'})
    
    except KeyError:
       return jsonify({"status":500,"value":'Missing parameter'})
