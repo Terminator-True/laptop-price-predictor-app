@@ -8,7 +8,7 @@ app = Flask(__name__)
 # enable CORS
 CORS(app, resources={r'/*': {'origins': '*'}})
 
-@app.route("/prediction",methods=['POST'])
+@app.route("/api/prediction",methods=['POST'])
 def predict():
    try:
       
