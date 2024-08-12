@@ -1,0 +1,6 @@
+setup.py
+laptop_price_predictor_app.egg-info/PKG-INFO
+laptop_price_predictor_app.egg-info/SOURCES.txt
+laptop_price_predictor_app.egg-info/dependency_links.txt
+laptop_price_predictor_app.egg-info/requires.txt
+laptop_price_predictor_app.egg-info/top_level.txt
