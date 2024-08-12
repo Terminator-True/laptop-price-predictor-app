@@ -4,7 +4,7 @@
 Una aplicación que dados unos parámetros de un portátil. Te generará un precio predecido por Machine Learning
 
 ## API Reference
-### POST /prediction
+### POST /api/prediction
 
 El endpoint te permite realizar una predicción en base a los datos enviados.
 
