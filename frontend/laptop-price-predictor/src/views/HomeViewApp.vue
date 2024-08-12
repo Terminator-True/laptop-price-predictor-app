@@ -288,7 +288,7 @@ export default {
 				this.predicted_price = res.data.value
 			})
 			this.formulario = this.getLabelsFromOptions(this.form);
-			console.log(this.formulario);
+			// console.log(this.formulario);
 			setTimeout(() => {
 				this.cargando = false;
 				this.result = true;
